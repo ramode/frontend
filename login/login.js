@@ -10,6 +10,7 @@ angular.module("billAdmApp.login", [])
 			views: {
 				"login": {
 					templateUrl: "login/login.html",
+					controller: "LoginCtrl",
 				},
 			},
 			
@@ -17,8 +18,26 @@ angular.module("billAdmApp.login", [])
 
 }])
 
-.controller("LoginCtrl", ["$stateParams", function($stateParams) {
+.controller("LoginCtrl", ["$scope", "$http", "$state", function($scope, $http, $state) {
 	
 	console.log("LoginCtrl");
+
+	// $scope.login = {};
+
+	$scope.SignIn = function() {
+		console.log($scope.login);
+		$http.post('/api/v1/login',
+			$scope.login
+		).then(
+			function(res) {
+				console.log(res);
+				$state.go("about");
+			},
+			function(err) {
+				console.log(err);
+			}
+		);
+
+	};
 
 }])

@@ -15,7 +15,7 @@
 
 				<md-input-container class="md-block">
 					<label>Логин</label>
-					<input type="text" name="login" ng-model="login.login" required="" />
+					<input type="text" name="login" ng-model="login.username" required="" />
 					<!-- <div ng-messages="LoginForm.login.$error" role="alert" multiple="">
 						<div ng-message="required" class="my-message">Please enter your email.</div>
 					</div> -->
@@ -30,7 +30,7 @@
 					</div> -->
 				</md-input-container>
 
-				<md-button ng-disabled="!LoginForm.$valid" ng-click="vm.submit()" class="md-raised md-primary">&nbsp Login &nbsp</md-button>
+				<md-button ng-disabled="!LoginForm.$valid" ng-click="SignIn()" class="md-raised md-primary">Отправить</md-button>
 			
 			</form>
 
