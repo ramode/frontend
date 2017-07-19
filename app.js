@@ -7,6 +7,7 @@ angular.module("billAdmApp", [
 	"billAdmApp.test",
 	"billAdmApp.subscribers",
 	"billAdmApp.tariffs",
+	"billAdmApp.bras",
 	// 'myApp.view2',
 	// 'myApp.version'
 ])
