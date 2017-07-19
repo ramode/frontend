@@ -4,26 +4,41 @@
 angular.module("billAdmApp", [
 	"ngMaterial",
 	"ui.router",
-	// 'myApp.view1',
+	"billAdmApp.test",
+	"billAdmApp.subscribers",
+	"billAdmApp.tariffs",
 	// 'myApp.view2',
 	// 'myApp.version'
-]).
+])
 
-config(["$stateProvider", function($stateProvider) {
+.config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
 
-	var testState = {
-		name: "test",
-		url: "/test",
-		template: "<h3>hello world!</h3>",
-	};
+	$stateProvider
+		.state("main", {
+			abstract: true,
+			views: {
+				"header": {
+					templateUrl: "templates/header.html",
+				},
+				"content": {
+					template: "<div ui-view></div>",
+				},
+				"footer": {
+					templateUrl: "templates/footer.html",
+				}
+			}
 
-	var testState2 = {
-		name: "test2",
-		url: "/test2",
-		template: "<h3>hello world! 2222</h3>",
-	};
+		})
 
-	$stateProvider.state(testState);
-	$stateProvider.state(testState2);
+		.state("about", {
+			parent: "main",
+			url: "/about",
+			templateUrl: "templates/about.html"
+		});
+
+
+	$urlRouterProvider.when("", "/about");
+	$urlRouterProvider.otherwise("/about");
+
 
 }]);
