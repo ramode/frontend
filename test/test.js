@@ -17,7 +17,7 @@ angular.module("billAdmApp.test", ["ui.router"])
 
 .controller("TestCtrl", ["$stateParams", function($stateParams) {
 	console.log("TestCtrl");
-	console.log($stateParams.testId);
+	console.log($stateParams);
 }])
 
 // ---------------------------------------------------------------
@@ -38,15 +38,15 @@ angular.module("billAdmApp.test", ["ui.router"])
 }])
 
 // .controller("TestSsCtrl", ["$transition$", function($transition$) {
-// .controller("TestSsCtrl", ["$stateParams", function($stateParams) {
+.controller("TestSsCtrl", ["$stateParams", function($stateParams) {
 
-// 	console.log("TestSsCtrl");
+	console.log("TestSsCtrl");
 
 	
-// 	// console.log($transition$.params().testId);
-// 	console.log($stateParams);
-// 	console.log($stateParams.testId);
+	// console.log($transition$.params().testId);
+	console.log($stateParams);
+	console.log($stateParams.testId);
 
-// 	console.log("asdsad");
+	console.log("asdsad");
 
-// }])
+}])

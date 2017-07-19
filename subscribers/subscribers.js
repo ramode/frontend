@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("billAdmApp.subscribers", ["ui.router"])
+angular.module("billAdmApp.subscribers", [])
 
 .config(["$stateProvider", function($stateProvider) {
 	

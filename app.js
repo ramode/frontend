@@ -4,7 +4,10 @@
 angular.module("billAdmApp", [
 	"ngMaterial",
 	"ui.router",
+	// "permission",
+	// "permission.ui",
 	"billAdmApp.test",
+	"billAdmApp.login",
 	"billAdmApp.subscribers",
 	"billAdmApp.tariffs",
 	"billAdmApp.bras",
