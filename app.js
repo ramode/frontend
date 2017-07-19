@@ -4,8 +4,8 @@
 angular.module("billAdmApp", [
 	"ngMaterial",
 	"ui.router",
-	// "permission",
-	// "permission.ui",
+	"permission",
+	"permission.ui",
 	"billAdmApp.test",
 	"billAdmApp.login",
 	"billAdmApp.subscribers",
@@ -45,4 +45,37 @@ angular.module("billAdmApp", [
 	$urlRouterProvider.otherwise("/about");
 
 
-}]);
+}])
+
+.run(["PermRoleStore", "$q", "$http", function(PermRoleStore, $q, $http) {
+
+	var CheckRole = function(roleName) {
+
+			return function(roleName) {
+
+	            var deferred = $q.defer();
+	            
+	            $http.post("/api/v1/check_role", {"role": roleName}).then(
+					function(res) {
+						console.log(res);
+						deferred.resolve();
+					},
+					function(err) {
+						console.log(err);
+						deferred.reject();
+					}
+
+	            );
+
+	            return deferred.promise;
+			};
+
+    };
+
+
+	PermRoleStore.defineRole("SUBSCRIBER", CheckRole());
+	PermRoleStore.defineRole("KASSIR", CheckRole());
+	PermRoleStore.defineRole("ADMIN", CheckRole());
+	PermRoleStore.defineRole("SUPER ADMIN", CheckRole());
+
+}])

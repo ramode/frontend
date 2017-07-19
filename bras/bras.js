@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("billAdmApp.bras", ["ui.router"])
+angular.module("billAdmApp.bras", [])
 
 .config(["$stateProvider", function($stateProvider) {
 	
@@ -11,6 +11,11 @@ angular.module("billAdmApp.bras", ["ui.router"])
 			url: "/bras",
 			templateUrl: "bras/bras.html",
 			controller: "BrasCtrl",
+			data: {
+				permissions: {
+					only: ["SUPER ADMIN", "ADMIN"]
+				}
+			}
 		});
 
 }])
