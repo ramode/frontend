@@ -1,12 +1,32 @@
-<md-button class="md-primary" ui-sref="subscribers.new">Добавить</md-button>
+<md-button class="md-primary" ui-sref="subscribers.new">Новый абонент</md-button>
 <br />
 
-<table>
-	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-</table>
+<div layout="row" layout-sm="column" layout-align="space-around" ng-show="isLoading">
+	<md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<md-table-container>
+	<table md-table md-row-select multiple>
+		<thead md-head>
+			<tr md-row>
+				<th md-column>ID</th>
+        		<th md-column>ФИО</th>
+        		<th md-column>Адрес</th>
+        		<th md-column>Дата рождения</th>
+        		<th md-column>Телефон</th>
+        		<th md-column>E-Mail</th>
+        		<th md-column>Паспорт</th>
+      </tr>
+    </thead>
+		<tbody md-body>
+			<tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="s in subscribers">
+			<td md-cell>{{ s.id }}</td>
+			<td md-cell>{{ s.name }}</td>
+			<td md-cell>{{ s.address }}</td>
+			<td md-cell>{{ s.birthdate | date }}</td>
+			<td md-cell>{{ s.phone }}</td>
+			<td md-cell>{{ s.email }}</td>
+			<td md-cell>{{ s.passport }}</td>
+		</tbody>
+	</table>
+</md-table-container>

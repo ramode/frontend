@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("billAdmApp.subscribers", []).config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
+angular.module("billAdmApp.subscribers", ["md.data.table"]).config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
 	
 	$stateProvider
 		.state("subscribers", {
@@ -46,9 +46,23 @@ angular.module("billAdmApp.subscribers", []).config(["$stateProvider", "$urlRout
 
 }])
 
-.controller("ListSubscribersCtrl", [function() {
+.controller("ListSubscribersCtrl", ["$scope", "$http", function($scope, $http) {
 	
 	console.log("ListSubscribersCtrl");
+
+	$scope.isLoading = true;
+	$http.get("/api/v1/subscribers/list").then(
+		function(res) {
+			console.log(res);
+			$scope.isLoading = false;
+			console.log(res.data);
+			$scope.subscribers = res.data;
+		},
+		function(err) {
+			console.log(err);
+			$scope.isLoading = false;
+		}
+	);
 
 }])
 
