@@ -1,0 +1,54 @@
+<h3 class="md-headline">Новый абонент</h3>
+
+
+<form name="NewSubscriberForm">
+
+	<div layout="row">
+
+		<md-input-container class="md-block" flex>
+			<label>ФИО</label>
+			<input ng-model="subscriber.name">
+		</md-input-container>
+
+		<md-input-container>
+			<label>Дата рождения</label>
+			<md-datepicker ng-model="subscriber.birthdayDate"></md-datepicker>
+		</md-input-container>
+
+	</div>
+
+	<div layout="row">
+
+		<md-input-container class="md-block" flex>
+			<label>Телефон</label>
+			<input ng-model="subscriber.phone">
+		</md-input-container>
+
+		<md-input-container class="md-block" flex>
+			<label>E-Mail</label>
+			<input ng-model="subscriber.email">
+		</md-input-container>
+
+	</div>
+	
+
+        <md-input-container class="md-block">
+			<label>Паспорт</label>
+			<input ng-model="subscriber.passport">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+			<label>Адрес</label>
+			<input ng-model="subscriber.address">
+        </md-input-container>
+
+	<div layout="row" layout-sm="column" layout-align="space-around" ng-show="isLoading">
+		<md-progress-circular md-mode="indeterminate"></md-progress-circular>
+	</div>
+
+	<md-button type="submit" class="md-primary" ng-click="CreateSubscriber()">Создать</md-button>
+
+</form>
+    
+  
+

@@ -30,6 +30,13 @@ angular.module("billAdmApp", [
 				"footer": {
 					templateUrl: "templates/footer.html",
 				}
+			},
+
+			data: {
+				permissions: {
+					only: ["SUPER ADMIN", "ADMIN", "KASSIR", "SUBSCRIBER"],
+					redirectTo: "login"
+				}
 			}
 
 		})
@@ -65,7 +72,7 @@ angular.module("billAdmApp", [
 						} else if ( res.status == 204 ) {
 							deferred.reject();
 						}
-						
+
 					},
 					function(err) {
 						console.log(err);
