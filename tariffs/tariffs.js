@@ -11,6 +11,12 @@ angular.module("billAdmApp.tariffs", ["ui.router"])
 			url: "/tariffs",
 			templateUrl: "tariffs/tariffs.html",
 			controller: "TariffsCtrl",
+			data: {
+				permissions: {
+					only: ["SUPER ADMIN", "ADMIN", "KASSIR"],
+					redirectTo: "login"
+				}
+			}
 		});
 
 }])

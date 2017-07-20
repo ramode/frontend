@@ -57,12 +57,18 @@ angular.module("billAdmApp", [
 	            
 	            $http.post("/api/v1/check_role", {"role": roleName}).then(
 					function(res) {
-						console.log(res);
-						deferred.resolve();
+
+						// console.log(res);
+
+						if ( res.status == 200 ) {
+							deferred.resolve();
+						} else if ( res.status == 204 ) {
+							deferred.reject();
+						}
+						
 					},
 					function(err) {
 						console.log(err);
-						deferred.reject();
 					}
 
 	            );

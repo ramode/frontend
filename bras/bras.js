@@ -13,7 +13,8 @@ angular.module("billAdmApp.bras", [])
 			controller: "BrasCtrl",
 			data: {
 				permissions: {
-					only: ["SUPER ADMIN", "ADMIN"]
+					only: ["SUPER ADMIN", "ADMIN"],
+					redirectTo: "login"
 				}
 			}
 		});

@@ -11,6 +11,12 @@ angular.module("billAdmApp.subscribers", [])
 			url: "/subscribers",
 			templateUrl: "subscribers/subscribers.html",
 			controller: "SubscriberCtrl",
+			data: {
+				permissions: {
+					only: ["SUPER ADMIN", "ADMIN", "KASSIR"],
+					redirectTo: "login"
+				}
+			}
 		});
 
 }])
