@@ -18,11 +18,19 @@ angular.module("billAdmApp.login", [])
 
 }])
 
-.factory("UserService", function($http, $q) {
+.factory("UserService", function($http, $q, $cookies) {
 
-	var obj = {};
-	obj.isAuthed = false;
-	obj.roles = [];
+	var obj;
+	
+	if ( angular.isUndefined( $cookies.getObject("userservice") ) ) {
+		obj = {};
+		obj.isAuthed = false;
+		obj.roles = [];
+	} else {
+		obj = $cookies.getObject("userservice")
+	}
+
+	// console.log($sessionStorage);
 
 	obj.login = function (credentials) {
 		
@@ -33,13 +41,19 @@ angular.module("billAdmApp.login", [])
 		).then(
 			function(res) {
 				console.log(res);
+
 				obj.isAuthed = true;
 				obj.roles = res.data.roles;
+				$cookies.putObject("userservice", obj);
+
 				// return true;
 				deferred.resolve();
 			},
 			function(err) {
 				console.log(err);
+
+				delete $sessionStorage.userservice;
+
 				// return false;
 				deferred.reject();
 			}
@@ -63,7 +77,7 @@ angular.module("billAdmApp.login", [])
 		UserService.login($scope.credentials).then(
 			
 			function(res) {
-				console.log("ok");
+				console.log(res);
 
 				// Баг какой то... без $timeout не работает
 				// https://github.com/angular-ui/ui-router/issues/1583

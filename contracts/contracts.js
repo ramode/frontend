@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module("billAdmApp.subscribers", ["md.data.table"]).config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
+angular.module("billAdmApp.contracts", ["md.data.table"]).config(function($stateProvider, $urlRouterProvider) {
 	
 	$stateProvider
-		.state("subscribers", {
+		.state("contracts", {
 			parent: "main",
 			template: "<ui-view />",
-			url: "/subscribers",
+			url: "/contracts",
 			// controller: "SubscriberCtrl",
 			abstract: true,
 			
@@ -18,17 +18,17 @@ angular.module("billAdmApp.subscribers", ["md.data.table"]).config(["$stateProvi
 			}
 		})
 
-		.state("subscribers.list", {
+		.state("contracts.list", {
 			url: "/list",
-			templateUrl: "subscribers/list_subscribers.html",
-			controller: "ListSubscribersCtrl",
+			templateUrl: "contracts/list_contracts.html",
+			controller: "ListContractsCtrl",
 		})
 
-		.state("subscribers.new", {
+		.state("contracts.new", {
 
 			url: "/new",
-			templateUrl: "subscribers/new_subscriber.html",
-			controller: "NewSubscriberCtrl",
+			templateUrl: "contracts/new_contract.html",
+			controller: "NewContractCtrl",
 
 			// data: {
 			// 	permissions: {
@@ -38,17 +38,17 @@ angular.module("billAdmApp.subscribers", ["md.data.table"]).config(["$stateProvi
 			// }
 		})
 
+})
+
+.controller("ContractCtrl", [function() {
+	
+	console.log("ContractCtrl");
+
 }])
 
-.controller("SubscriberCtrl", [function() {
+.controller("ListContractsCtrl", function($scope, $http, UserService) {
 	
-	console.log("SubscriberCtrl");
-
-}])
-
-.controller("ListSubscribersCtrl", function($scope, $http, UserService) {
-	
-	console.log("ListSubscribersCtrl");
+	console.log("ListContractsCtrl");
 	console.log(UserService);
 
 	$scope.isLoading = true;
@@ -68,9 +68,9 @@ angular.module("billAdmApp.subscribers", ["md.data.table"]).config(["$stateProvi
 })
 
 
-.controller("NewSubscriberCtrl", ["$scope", "$http", function($scope, $http) {
+.controller("NewContractCtrl", ["$scope", "$http", function($scope, $http) {
 
-	console.log("NewSubscriberCtrl");
+	console.log("NewContractCtrl");
 
 	$scope.CreateSubscriber = function() {
 
