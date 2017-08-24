@@ -32,12 +32,12 @@ angular.module("billAdmApp", [
 				}
 			},
 
-			data: {
-				permissions: {
-					only: ["SUPER ADMIN", "ADMIN", "KASSIR", "SUBSCRIBER"],
-					redirectTo: "login"
-				}
-			}
+			// data: {
+			// 	permissions: {
+			// 		only: ["SUPER ADMIN", "ADMIN", "KASSIR", "SUBSCRIBER"],
+			// 		redirectTo: "login"
+			// 	}
+			// }
 
 		})
 
@@ -54,41 +54,54 @@ angular.module("billAdmApp", [
 
 }])
 
-.run(["PermRoleStore", "$q", "$http", function(PermRoleStore, $q, $http) {
+
+
+.run(function(PermRoleStore, $q, $http, UserService) {
+
+	// var CheckRole = function(roleName) {
+
+	// 		return function(roleName) {
+
+	//             var deferred = $q.defer();
+	            
+	//             $http.post("/api/v1/check_role", {"role": roleName}).then(
+	// 				function(res) {
+
+	// 					// console.log(res);
+
+	// 					if ( res.status == 200 ) {
+	// 						deferred.resolve();
+	// 					} else if ( res.status == 204 ) {
+	// 						deferred.reject();
+	// 					}
+
+	// 				},
+	// 				function(err) {
+	// 					console.log(err);
+	// 				}
+
+	//             );
+
+	//             return deferred.promise;
+	// 		};
+
+ //    };
+
 
 	var CheckRole = function(roleName) {
 
-			return function(roleName) {
+		if( UserService.roles.indexOf(roleName) !== -1 ) {
+			return true;
+		}
 
-	            var deferred = $q.defer();
-	            
-	            $http.post("/api/v1/check_role", {"role": roleName}).then(
-					function(res) {
-
-						// console.log(res);
-
-						if ( res.status == 200 ) {
-							deferred.resolve();
-						} else if ( res.status == 204 ) {
-							deferred.reject();
-						}
-
-					},
-					function(err) {
-						console.log(err);
-					}
-
-	            );
-
-	            return deferred.promise;
-			};
+		return false;
 
     };
 
 
-	PermRoleStore.defineRole("SUBSCRIBER", CheckRole());
-	PermRoleStore.defineRole("KASSIR", CheckRole());
-	PermRoleStore.defineRole("ADMIN", CheckRole());
-	PermRoleStore.defineRole("SUPER ADMIN", CheckRole());
+	PermRoleStore.defineRole("SUBSCRIBER", CheckRole);
+	PermRoleStore.defineRole("KASSIR", CheckRole);
+	PermRoleStore.defineRole("ADMIN", CheckRole);
+	PermRoleStore.defineRole("SUPER ADMIN", CheckRole);
 
-}])
+})

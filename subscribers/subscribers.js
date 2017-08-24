@@ -46,9 +46,10 @@ angular.module("billAdmApp.subscribers", ["md.data.table"]).config(["$stateProvi
 
 }])
 
-.controller("ListSubscribersCtrl", ["$scope", "$http", function($scope, $http) {
+.controller("ListSubscribersCtrl", function($scope, $http, UserService) {
 	
 	console.log("ListSubscribersCtrl");
+	console.log(UserService);
 
 	$scope.isLoading = true;
 	$http.get("/api/v1/subscribers/list").then(
@@ -64,7 +65,7 @@ angular.module("billAdmApp.subscribers", ["md.data.table"]).config(["$stateProvi
 		}
 	);
 
-}])
+})
 
 
 .controller("NewSubscriberCtrl", ["$scope", "$http", function($scope, $http) {
