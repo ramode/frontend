@@ -1,4 +1,4 @@
-<md-button class="md-primary" ui-sref="subscribers.new">Новый договор</md-button>
+<md-button class="md-primary" ui-sref="contracts.new">Новый договор</md-button>
 <br />
 
 <div layout="row" layout-sm="column" layout-align="space-around" ng-show="isLoading">
@@ -7,7 +7,7 @@
 
 <div class="md-body-1">
 	<md-table-container>
-		<table md-table md-row-select multiple>
+		<table md-table md-row-select multiple ng-model="selected" md-progress="promise">
 			<thead md-head>
 				<tr md-row>
 					<th md-column>ID</th>
@@ -20,7 +20,7 @@
 	      		</tr>
 	    	</thead>
 			<tbody md-body>
-				<tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="s in subscribers">
+				<tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="s in contracts">
 					<td md-cell>{{ s.id }}</td>
 					<td md-cell>{{ s.name }}</td>
 					<td md-cell>{{ s.address }}</td>

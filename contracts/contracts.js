@@ -49,15 +49,16 @@ angular.module("billAdmApp.contracts", ["md.data.table"]).config(function($state
 .controller("ListContractsCtrl", function($scope, $http, UserService) {
 	
 	console.log("ListContractsCtrl");
-	console.log(UserService);
 
+	$scope.selected = [];
+	
 	$scope.isLoading = true;
-	$http.get("/api/v1/subscribers/list").then(
+	$http.get("/api/v1/contracts/list").then(
 		function(res) {
 			console.log(res);
 			$scope.isLoading = false;
 			console.log(res.data);
-			$scope.subscribers = res.data;
+			$scope.contracts = res.data;
 		},
 		function(err) {
 			console.log(err);
@@ -78,7 +79,7 @@ angular.module("billAdmApp.contracts", ["md.data.table"]).config(function($state
 
 		$scope.isLoading = true;
 
-		$http.post("/api/v1/subscribers/new", $scope.subscriber).then(
+		$http.post("/api/v1/contracts/new", $scope.subscriber).then(
 			function(res) {
 				console.log(res);
 				$scope.isLoading = false;

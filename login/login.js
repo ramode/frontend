@@ -21,11 +21,16 @@ angular.module("billAdmApp.login", [])
 .factory("UserService", function($http, $q, $cookies) {
 
 	var obj;
-	
-	if ( angular.isUndefined( $cookies.getObject("userservice") ) ) {
+
+	var initObj = function() {
 		obj = {};
 		obj.isAuthed = false;
 		obj.roles = [];
+		$cookies.putObject("userservice", obj);
+	};
+	
+	if ( angular.isUndefined( $cookies.getObject("userservice") ) ) {
+		initObj();
 	} else {
 		obj = $cookies.getObject("userservice")
 	}
@@ -52,7 +57,7 @@ angular.module("billAdmApp.login", [])
 			function(err) {
 				console.log(err);
 
-				delete $sessionStorage.userservice;
+				initObj();
 
 				// return false;
 				deferred.reject();
